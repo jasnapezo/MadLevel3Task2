@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun fabToggler() {
-        navController.addOnDestinationChangedListener { _,       destination, _ ->
+        navController.addOnDestinationChangedListener { _, destination, _ ->
             if (destination.id in arrayOf(R.id.addPortalFragment)) {
                 fab.hide()
             } else {

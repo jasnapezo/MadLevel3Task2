@@ -5,7 +5,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
-     <string name="portal_name">Title</string>
+    <string name="portal_name">Title</string>
     <string name="add_your_portal">Add your portal</string>
     <string name="url">http://www.voorbeeld.nl</string>
     <string name="fragment_add_portal">fragment_add_portal</string>
