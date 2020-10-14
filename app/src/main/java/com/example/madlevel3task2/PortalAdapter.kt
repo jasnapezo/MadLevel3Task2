@@ -4,14 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_portal.view.*
+import kotlinx.android.synthetic.main.item_portal.view.url
+import kotlinx.android.synthetic.main.item_portal.view.title
 
 class PortalAdapter(private val portals: List<Portal>) :
     RecyclerView.Adapter<PortalAdapter.ViewHolder>() {
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun databind(portal: Portal) {
-            itemView.title.text = portal.portalText
+            itemView.title.text = portal.name
+            itemView.url.text = portal.url
+
         }
     }
 
@@ -28,6 +31,5 @@ class PortalAdapter(private val portals: List<Portal>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.databind(portals[position])
     }
-
 
 }

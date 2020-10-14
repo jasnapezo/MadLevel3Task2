@@ -34,27 +34,24 @@ class PortalsFragment : Fragment() {
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = portalAdapter
 
-        observeAddReminderResult()
+        observeAddPortalResult()
     }
 
-    private fun observeAddReminderResult() {
+    private fun observeAddPortalResult() {
         setFragmentResultListener(REQ_PORTAL_KEY) { _, bundle ->
-            bundle.getString(BUNDLE_PORTAL_KEY)?.let {
-                val portal = Portal(it)
-
-                portals.add(portal)
+            bundle.getParcelable<Portal>(BUNDLE_PORTAL_KEY)?.let {
+                portals.add(it)
                 portalAdapter.notifyDataSetChanged()
-            } ?: Log.e("PortalFragment", "Request triggered, but empty portal text!")
-
+            } ?: Log.e("PortalsFragment", "Request triggered, but portal text is empty")
         }
     }
 
+
     private fun itemClicked(portal: Portal) {
         val builder = CustomTabsIntent.Builder()
-
         val customTabsIntent = builder.build()
 
-        customTabsIntent.launchUrl(requireContext(), Uri.parse(portal.portalText))
+        customTabsIntent.launchUrl(requireContext(), Uri.parse(portal.name))
     }
 
 
