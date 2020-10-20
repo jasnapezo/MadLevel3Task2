@@ -17,12 +17,14 @@ import kotlinx.android.synthetic.main.fragment_portal.*
  */
 class PortalsFragment : Fragment() {
 
-    private val portals = arrayListOf<Portal>()
-    private val portalAdapter = PortalAdapter(portals)
+    private var portals = arrayListOf<Portal>()
+    private var portalAdapter = PortalAdapter(portals) { portal: Portal ->
+        itemClicked(portal)
+    }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_portal, container, false)
@@ -31,6 +33,7 @@ class PortalsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // recyclerview
         recyclerView.layoutManager = GridLayoutManager(context, 2)
         recyclerView.adapter = portalAdapter
 
@@ -46,14 +49,11 @@ class PortalsFragment : Fragment() {
         }
     }
 
-
     private fun itemClicked(portal: Portal) {
         val builder = CustomTabsIntent.Builder()
+
         val customTabsIntent = builder.build()
 
-        customTabsIntent.launchUrl(requireContext(), Uri.parse(portal.name))
+        customTabsIntent.launchUrl(requireContext(), Uri.parse(portal.url))
     }
-
-
-
 }
